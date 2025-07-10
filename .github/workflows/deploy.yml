@@ -17,8 +17,8 @@ jobs:
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: 3.213.226.220
-        username: ubuntu
-        
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_KEY }}
         port: 22
         script: |
           cd /var/www/my-website/PathakPest
