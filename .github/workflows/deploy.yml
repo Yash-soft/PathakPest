@@ -13,11 +13,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Debug key length
-      run: echo "KEY LENGTH:${#EC2_KEY}"
-      env:
-        EC2_KEY: ${{ secrets.EC2_KEY }}
-
     - name: Deploy via SSH
       uses: appleboy/ssh-action@v1.0.0
       with:
