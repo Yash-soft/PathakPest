@@ -18,7 +18,7 @@ jobs:
       with:
         host: 3.213.226.220
         username: ubuntu
-        key: ${{ secrets.EC2_KEY }}
+        
         port: 22
         script: |
           cd /var/www/my-website/PathakPest
