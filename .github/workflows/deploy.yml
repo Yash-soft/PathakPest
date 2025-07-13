@@ -1,3 +1,4 @@
+# .github/workflows/deploy.yml
 name: Deploy to EC2
 
 on:
@@ -9,23 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Skip poore deploy block agar secret blank ho
-      - name: End job if EC2_HOST missing
-        if: ${{ secrets.EC2_HOST == '' }}
-        run: |
-          echo "EC2_HOST secret not set — skipping deploy."
-          exit 0
-
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Deploy to EC2 via SSH
-        if: ${{ secrets.EC2_HOST != '' }}
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host:     ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key:      ${{ secrets.EC2_KEY }}
+          host:     ${{ secrets.EC2_HOST }}   # 13.234.55.77 jaisa value Secrets → Actions me set karo
+          username: ${{ secrets.EC2_USER }}   # ubuntu
+          key:      ${{ secrets.EC2_KEY }}    # PEM ka pura text
           port:     22
           script: |
             cd ~/PathakPest
